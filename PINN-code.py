@@ -7,12 +7,8 @@ import scipy.io
 import random
 import tensorflow as tf
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # Use appropriate GPU setting
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # CUDA is NOT necessary
 
-# Set seeds for reproducibility
-random.seed(1234)
-np.random.seed(1234)
-tf.set_random_seed(1234)
 
 class PINN_Stokes_Slip:
     def __init__(self, XY_c, INLET, OUTLET, TOP, BOTTOM, uv_layers, lb, ub, Ls, mu=0.02, ExistModel=0, uvDir=''):
@@ -363,7 +359,7 @@ if __name__ == "__main__":
     plt.scatter(BOTTOM[:,0], BOTTOM[:,1], marker='o', alpha=0.3, color='purple')
     plt.show()
     
-    # Define slip length (example value)
+    # Define slip length 
     Ls = 0.05
     
     with tf.device('/device:GPU:0'):
